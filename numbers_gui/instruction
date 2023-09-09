@@ -1,0 +1,106 @@
+Name: Diep Luong
+Student number:
+Email: diep.luong@tuni.fi
+
+1. Introduction
+This is the GUI implementation of a classic 2048 game.
+
+2. Introduction
+- The program first asks the user to enter the information to the start window:
++ Board size: The board size by default is 4. This is also the minimum size of board for the game.
++ Goal: The goal by default is 2048. The minimum value of the goal is 4. There is a text browser 
+giving notification if the goal exceeds the maximum available value corresponding to the chosen 
+board size or if the goal is not the power of 2.
++ Seed: The seed value for the randomization.
++ m: The value which after m moves, a random tile will be removed from the game board.
++ Blocked tile coordinates: If the user chooses to block a tile (Yes radio butto is checked), the 
+user must enter valid coordinates (0 -> board size). Giving erroneous coordinates leaves a notification. 
+If No radio button is checked, the values of the coordinate spin boxed are ignored.
+- The start window shows untill the user gives all the valid values. After that, the program switches
+to the main window and the user can start the game. The tiles are moved by using the press buttons of
+directions on the screen or by using the keys W, A, S, D for corresponding directions.
+- The user have the option to pause, continue, restart, or quit the name as her/ his wish
+- The score of each round and the best score in a game is displayed on the GUI. 
+- The score is calculated according to the following principle. If two tiles are merged, the score for
+that move will be the value of the resulted tile. The score is added up after each move.
+
+3. Functionalities included in the game
+a. Minimal requirement
+- The program asks for the input of seed value and goal value from user.
+- The program consists of a graphic game board displaying the on-going state of the game.
+- The user can select a move direction using both key commands and push buttons.
+- The user is informed about the current game status (when they win and lose).
+- The program works just fine while varying the board size.
+- The restart functionality is included.
+- This is the documentation.
+
+b. Additional features
+- There is a seperate start window that get the game information from the user. The start window was 
+the intended to solve the problem of using arrow keys while working with spin boxes. However, for some 
+reasons (I haven't figured them out), I couldn't implement the key press event for the arrow keys while 
+the event is functional for the W, A, S, D keys.
+-  The board size is adjustable. The size is asked from the user in the start window.
+- Different numbers have different colors. However, the colors are only available for the tiles' values 
+ranging from 2 to 2^16. Value exceeding 2^16 will have the similar color as the 2^16 tile
+- The number in a tile is shown as a figure. This feature is also applied to the tiles' values ranging 
+from 2 to 2^16.
+- A timer indicating the time spent for a round is included.
+- After a certain amount of moves (m), a random tile is removed from the game board. The value of m is 
+asked from the user in the start window.
+- It is possible to block a square in tha board. The coordinates of the blocked tile are asked from the 
+user in the start window.
+- Points collecting is included.
+- The game also displays the best score of a player after the rounds.
+- Non-GUI feature: The program checks if the given goal was the power of 2. It also checks if the goal is
+valid for the corresponding size (maximum value of the goal = 2^(s*s)).
+- The background color of the timer changes if the player wins (green) or loses (red).
+- The user can pause and continue the game as her/ his wish. As the game pauses, the tiles cannot be moved.
+The game informs the pause to the player.
+
+4. Detailed description
+a. Class Startwindow 
+The program starts with the start window (QDialog) as described previously. It includes a TextBrowser widget 
+for giving error to the input values.
+
+b. Class Mainwindow
+The game then moves on to the main window where most of the functionalities are operated.
+- The MainWindow class stores:
++ Board size
++ Seed value
++ Goal value
++ Value for m
++ Coordinates of the blocked tile
++ Scores
++ Timer related variables
+- The MainWindow class handles:
++ Displaying the game board according to the current state of the game.
++ Keeping track of the moves on the board (merging tiles, stopping in front of the blocked tile, randomly
+removing a tile after m moves).
++ Keeping track of the time spent in a round.
++ Managing the pause/ continue state of the game (disabling key press event and buttons when the game pauses
+and enabling them otherwise).
++ Restarting game (restarting the timer and score, allowing the user to re-enter the game information if 
+he/ she wishes).
++ Quitting the game.
+
+c. Class Gameboard
+- This class represents the gameboard. It keeping track of the tiles on the board and the score of a round.
+- There are modifications in the class so that it would fit the desired program.
++ Instead of using the board size of 4, user can possibly set the wanted size to the board.
++ Randomly removing a tile after an amount of moves is now available.
++ Score tracking is also available.
+
+d. Class Numbertile
+- This class represents a number tile in the game. The most important methods of this class would be moving 
+the tile and updating its value.
+- There are modifications in the class so that it would fit the desired program.
++ A number tile can now be blocked.
+
+5. Resources
+The png resources are generated using the application PicMonkey.
+
+
+
+
+
+
